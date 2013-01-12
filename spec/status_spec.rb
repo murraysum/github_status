@@ -130,4 +130,54 @@ describe Github::Status do
       @status_item.created_on.should == @options[:created_on]
     end
   end
+
+  describe "#messages" do
+    before do
+      @status_options_1 = {
+        status: "major",
+        body: "some major status message",
+        created_on: Time.now
+      }
+      @status_options_2 = {
+        status: "minor",
+        body: "some minor status message",
+        created_on: Time.now
+      }
+      @options = [@status_options_1, @status_options_2] 
+      Github::StatusAPI.stub(:messages) { @options }
+      @status_items = Github::Status.messages
+    end
+
+    it "should contain both status messages" do
+      @status_items.should have(2).items
+    end
+
+    describe "initialize the first status" do
+      it 'should initialise the status' do
+        @status_items[0].status.should == @status_options_1[:status]
+      end
+
+      it 'should initialise the message' do
+        @status_items[0].message.should == @status_options_1[:body]
+      end
+
+      it 'should initialise the created on' do
+        @status_items[0].created_on.should == @status_options_1[:created_on]
+      end
+    end 
+
+    describe "initialize the second status" do
+      it 'should initialise the status' do
+        @status_items[1].status.should == @status_options_2[:status]
+      end
+
+      it 'should initialise the message' do
+        @status_items[1].message.should == @status_options_2[:body]
+      end
+
+      it 'should initialise the created on' do
+        @status_items[1].created_on.should == @status_options_2[:created_on]
+      end
+    end 
+  end
 end
