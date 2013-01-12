@@ -106,4 +106,28 @@ describe Github::Status do
       @status_item.minor?.should be_true
     end
   end
+
+  describe "#last_message" do
+    before do
+      @options = {
+        status: "major",
+        body: "some status message",
+        created_on: Time.now
+      }
+      Github::StatusAPI.stub(:last_message) { @options }
+      @status_item = Github::Status.last_message
+    end
+    
+    it 'should initialise the status' do
+      @status_item.status.should == @options[:status]
+    end
+
+    it 'should initialise the message' do
+      @status_item.message.should == @options[:body]
+    end
+
+    it 'should initialise the created on' do
+      @status_item.created_on.should == @options[:created_on]
+    end
+  end
 end
