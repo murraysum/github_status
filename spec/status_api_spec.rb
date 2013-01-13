@@ -78,5 +78,42 @@ describe Github::StatusAPI do
       end
     end
   end
+
+  describe "#messages" do
+    before do
+      @status_options_1 = {
+        status: "major",
+        body: "some major status message",
+        created_on: Time.now.to_s
+      }
+      @status_options_2 = {
+        status: "minor",
+        body: "some minor status message",
+        created_on: Time.now.to_s
+      }
+      @expected_response = [@status_options_1, @status_options_2]
+
+      @stub_request = stub_request(:get, "https://status.github.com/api/messages.json")
+      @stub_request.to_return(body: JSON.generate(@expected_response))
+
+      @actual_response = Github::StatusAPI.messages
+    end
+
+    describe "request" do
+      it "should have been requested" do
+        @stub_request.should have_been_requested
+      end
+
+      it "should have requested messages.json" do
+        @stub_request.should have_requested(:get, "https://status.github.com/api/messages.json")
+      end
+    end
+
+    describe "response" do
+      it "should respond with a list of messages" do
+        @actual_response.should == @expected_response
+      end
+    end
+  end
 end
 
