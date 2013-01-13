@@ -1,4 +1,6 @@
 require 'rspec'
+require 'webmock/rspec'
+
 require 'github_status'
 
 RSpec.configure do |config|
