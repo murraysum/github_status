@@ -1,20 +1,27 @@
 module Github
   class StatusAPI
+    API_URL = "https://status.github.com/api.json"
+
+    STATUS_URL = "https://status.github.com/api/status.json" 
+
+    LAST_MESSAGE_URL = "https://status.github.com/api/last-message.json" 
+
+    MESSAGES_URL = "https://status.github.com/api/messages.json" 
 
     def self.api
-      get("https://status.github.com/api.json")
+      get(API_URL)
     end
 
     def self.current_status
-      get("https://status.github.com/api/status.json")
+      get(STATUS_URL)
     end
 
     def self.last_message
-      get("https://status.github.com/api/last-message.json")
+      get(LAST_MESSAGE_URL)
     end
 
     def self.messages
-      get("https://status.github.com/api/messages.json")
+      get(MESSAGES_URL)
     end
 
     private
