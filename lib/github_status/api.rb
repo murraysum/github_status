@@ -1,5 +1,5 @@
-module Github
-  class StatusAPI
+module GithubStatus
+  class API
     API_URL = "https://status.github.com/api.json"
 
     STATUS_URL = "https://status.github.com/api/status.json" 

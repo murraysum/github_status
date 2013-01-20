@@ -5,12 +5,12 @@ require 'github_status/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "github_status"
-  gem.version       = Github::VERSION
-  gem.authors       = Github::AUTHORS
-  gem.email         = Github::EMAIL
-  gem.summary       = Github::SUMMARY
-  gem.description   = Github::DESCRIPTION
-  gem.homepage      = Github::HOMEPAGE
+  gem.version       = GithubStatus::VERSION
+  gem.authors       = GithubStatus::AUTHORS
+  gem.email         = GithubStatus::EMAIL
+  gem.summary       = GithubStatus::SUMMARY
+  gem.description   = GithubStatus::DESCRIPTION
+  gem.homepage      = GithubStatus::HOMEPAGE
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

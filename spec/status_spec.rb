@@ -1,17 +1,17 @@
 require 'spec_helper'
 
-describe Github::Status do
+describe GithubStatus::Status do
   describe 'status constants' do
     it 'should have good status' do
-      Github::Status::GOOD.should == "good" 
+      GithubStatus::Status::GOOD.should == "good" 
     end
 
     it 'should have major status' do
-      Github::Status::MAJOR.should == "major" 
+      GithubStatus::Status::MAJOR.should == "major" 
     end
 
     it 'should have minor status' do
-      Github::Status::MINOR.should == "minor" 
+      GithubStatus::Status::MINOR.should == "minor" 
     end
   end
 
@@ -22,7 +22,7 @@ describe Github::Status do
         body: "some status message",
         created_on: Time.now
       }
-      @status_item = Github::Status.new(@options)
+      @status_item = GithubStatus::Status.new(@options)
     end
 
     it 'should initialise the status' do
@@ -45,7 +45,7 @@ describe Github::Status do
         body: "some status message",
         created_on: Time.now
       }
-      @status_item = Github::Status.new(@options)
+      @status_item = GithubStatus::Status.new(@options)
     end
 
     it 'should identify as good' do
@@ -68,7 +68,7 @@ describe Github::Status do
         body: "some status message",
         created_on: Time.now
       }
-      @status_item = Github::Status.new(@options)
+      @status_item = GithubStatus::Status.new(@options)
     end
 
     it 'should not identify as good' do
@@ -91,7 +91,7 @@ describe Github::Status do
         body: "some status message",
         created_on: Time.now
       }
-      @status_item = Github::Status.new(@options)
+      @status_item = GithubStatus::Status.new(@options)
     end
 
     it 'should not identify as good' do
@@ -114,8 +114,8 @@ describe Github::Status do
         body: "some status message",
         created_on: Time.now
       }
-      Github::StatusAPI.stub(:last_message) { @options }
-      @status_item = Github::Status.last_message
+      GithubStatus::API.stub(:last_message) { @options }
+      @status_item = GithubStatus::Status.last_message
     end
     
     it 'should initialise the status' do
@@ -144,8 +144,8 @@ describe Github::Status do
         created_on: Time.now
       }
       @options = [@status_options_1, @status_options_2] 
-      Github::StatusAPI.stub(:messages) { @options }
-      @status_items = Github::Status.messages
+      GithubStatus::API.stub(:messages) { @options }
+      @status_items = GithubStatus::Status.messages
     end
 
     it "should contain both status messages" do

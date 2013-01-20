@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Github::StatusAPI do
+describe GithubStatus::API do
   describe "#api" do
     before do
       @expected_response = {
@@ -12,7 +12,7 @@ describe Github::StatusAPI do
       @stub_request = stub_request(:get, "https://status.github.com/api.json")
       @stub_request.to_return(body: JSON.generate(@expected_response))
 
-      @actual_response = Github::StatusAPI.api
+      @actual_response = GithubStatus::API.api
     end
 
     describe "request" do  
@@ -51,7 +51,7 @@ describe Github::StatusAPI do
       @stub_request = stub_request(:get, "https://status.github.com/api/last-message.json")
       @stub_request.to_return(body: JSON.generate(@expected_response))
 
-      @actual_response = Github::StatusAPI.last_message
+      @actual_response = GithubStatus::API.last_message
     end
 
     describe "request" do  
@@ -96,7 +96,7 @@ describe Github::StatusAPI do
       @stub_request = stub_request(:get, "https://status.github.com/api/messages.json")
       @stub_request.to_return(body: JSON.generate(@expected_response))
 
-      @actual_response = Github::StatusAPI.messages
+      @actual_response = GithubStatus::API.messages
     end
 
     describe "request" do

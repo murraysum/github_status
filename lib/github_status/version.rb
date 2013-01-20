@@ -1,4 +1,4 @@
-module Github
+module GithubStatus
   VERSION = "0.0.1"
   
   AUTHORS = [

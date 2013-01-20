@@ -1,4 +1,4 @@
-module Github
+module GithubStatus
   class Status
 
     GOOD = "good"
@@ -14,11 +14,11 @@ module Github
     end
 
     def self.last_message 
-      new(Github::StatusAPI.last_message)
+      new(GithubStatus::API.last_message)
     end
 
     def self.messages
-      Github::StatusAPI.messages.collect { |response| new(response) }
+      GithubStatus::API.messages.collect { |response| new(response) }
     end
     
     def good?
