@@ -24,9 +24,9 @@ Or install it yourself as:
 Firstly, the library can be used to wrap the whole of the Github Status API into objects.
 ```
 Github::Status.last_message
-=> #<Github::Status @created_on="2013-01-08T23:13:55Z", @message="Error Message ...",@status="minor">
+=> #<GithubStatus::Status @created_on="2013-01-08T23:13:55Z", @message="Error Message ...",@status="minor">
 
-Github::Status.messages
+GithubStatus::Status.messages
 => [#<Github::Status @created_on="2013-01-08T23:33:47Z", @message="Error Message ...", @status="minor">,
     #<Github::Status @created_on="2013-01-08T23:33:47Z", @message="Error Message ...", @status="major">,
     #<Github::Status @created_on="2013-01-08T23:33:47Z", @message="Error Message ...", @status="minor">]
@@ -36,10 +36,10 @@ Github::Status.messages
 Alternatively, the GitHub Status API can be queried directly to return the JSON:
 
 ```
-Github::StatusAPI.last_message
+GithubStatus::API.last_message
 => { :status=>"minor", :body=>"Error message ...", :created_on=>"2013-01-08T23:33:47Z" }
 
-Github::StatusAPI.messages
+GithubStatus::API.messages
 => [
      { :status=>"minor", :body=>"Error message ...", :created_on=>"2013-01-08T23:33:47Z" },
      { :status=>"minor", :body=>"Error message ...", :created_on=>"2013-01-08T23:33:47Z" }
