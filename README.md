@@ -6,8 +6,7 @@ or querying the GitHub Status API.
 This library allows you to easily integrate and query the GitHub Status API.
 
 ## Installation
-At the present moment I haven't release the gem. However, you can easily build and install it yourself.
-<!--
+
 Add this line to your application's Gemfile:
 
     gem 'github_status'
@@ -19,10 +18,13 @@ And then execute:
 Or install it yourself as:
 
     $ gem install github_status
--->
+
 ## Usage
 Firstly, the library can be used to wrap the whole of the Github Status API into objects.
+
 ```
+require 'github_status'
+
 Github::Status.last_message
 => #<GithubStatus::Status @created_on="2013-01-08T23:13:55Z", @message="Error Message ...",@status="minor">
 
@@ -33,7 +35,7 @@ GithubStatus::Status.messages
  
 ```
 
-Alternatively, the GitHub Status API can be queried directly to return the JSON:
+Alternatively, the GitHub Status API can be queried directly:
 
 ```
 GithubStatus::API.last_message
