@@ -25,7 +25,7 @@ Firstly, the library can be used to wrap the whole of the Github Status API into
 ```
 require 'github_status'
 
-Github::Status.last_message
+GithubStatus::Status.last_message
 => #<GithubStatus::Status @created_on="2013-01-08T23:13:55Z", @message="Error Message ...",@status="minor">
 
 GithubStatus::Status.messages
