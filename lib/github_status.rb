@@ -1,6 +1,7 @@
 require 'net/https'
 require 'uri'
 require 'json'
+require 'date'
 
 module GithubStatus
   require "github_status/version"

@@ -20,7 +20,7 @@ describe GithubStatus::Status do
       @options = {
         status: "good",
         body: "some status message",
-        created_on: Time.now
+        created_on: DateTime.now.to_s
       }
       @status_item = GithubStatus::Status.new(@options)
     end
@@ -34,7 +34,7 @@ describe GithubStatus::Status do
     end
 
     it 'should initialise the created on' do
-      @status_item.created_on.should == @options[:created_on]
+      @status_item.created_on.to_s.should == @options[:created_on]
     end
   end
 
@@ -43,7 +43,7 @@ describe GithubStatus::Status do
       @options = {
         status: "good",
         body: "some status message",
-        created_on: Time.now
+        created_on: DateTime.now.to_s
       }
       @status_item = GithubStatus::Status.new(@options)
     end
@@ -66,7 +66,7 @@ describe GithubStatus::Status do
       @options = {
         status: "major",
         body: "some status message",
-        created_on: Time.now
+        created_on: DateTime.now.to_s
       }
       @status_item = GithubStatus::Status.new(@options)
     end
@@ -89,7 +89,7 @@ describe GithubStatus::Status do
       @options = {
         status: "minor",
         body: "some status message",
-        created_on: Time.now
+        created_on: DateTime.now.to_s
       }
       @status_item = GithubStatus::Status.new(@options)
     end
@@ -112,7 +112,7 @@ describe GithubStatus::Status do
       @options = {
         status: "major",
         body: "some status message",
-        created_on: Time.now
+        created_on: DateTime.now.to_s
       }
       GithubStatus::API.stub(:last_message) { @options }
       @status_item = GithubStatus::Status.last_message
@@ -127,7 +127,7 @@ describe GithubStatus::Status do
     end
 
     it 'should initialise the created on' do
-      @status_item.created_on.should == @options[:created_on]
+      @status_item.created_on.to_s.should == @options[:created_on]
     end
   end
 
@@ -136,12 +136,12 @@ describe GithubStatus::Status do
       @status_options_1 = {
         status: "major",
         body: "some major status message",
-        created_on: Time.now
+        created_on: DateTime.now.to_s
       }
       @status_options_2 = {
         status: "minor",
         body: "some minor status message",
-        created_on: Time.now
+        created_on: DateTime.now.to_s
       }
       @options = [@status_options_1, @status_options_2] 
       GithubStatus::API.stub(:messages) { @options }
@@ -162,7 +162,7 @@ describe GithubStatus::Status do
       end
 
       it 'should initialise the created on' do
-        @status_items[0].created_on.should == @status_options_1[:created_on]
+        @status_items[0].created_on.to_s.should == @status_options_1[:created_on]
       end
     end 
 
@@ -176,7 +176,7 @@ describe GithubStatus::Status do
       end
 
       it 'should initialise the created on' do
-        @status_items[1].created_on.should == @status_options_2[:created_on]
+        @status_items[1].created_on.to_s.should == @status_options_2[:created_on]
       end
     end 
   end
