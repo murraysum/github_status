@@ -10,7 +10,7 @@ module GithubStatus
     def initialize(options)
       @status = options[:status]
       @message = options[:body]
-      @created_on = options[:created_on]
+      @created_on = DateTime.parse(options[:created_on])
     end
 
     def self.last_message 
