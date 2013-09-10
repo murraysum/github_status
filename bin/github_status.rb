@@ -23,6 +23,11 @@ module StatusParser
         statuses = GithubStatus::Status.messages
         StatusPresenter.print(statuses)
       end
+
+      opts.on('-c', '--current', 'Show the current status') do
+        status = GithubStatus::Status.current
+        StatusPresenter.print([status])
+      end
     end
 
     parser.parse!

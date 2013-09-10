@@ -107,6 +107,29 @@ describe GithubStatus::Status do
     end
   end
 
+  describe "#current" do
+    before do
+      @options = {
+        status: "major",
+        last_updated: DateTime.now.to_s
+      }
+      GithubStatus::API.stub(:current_status) { @options }
+      @status_item = GithubStatus::Status.current
+    end
+
+    it 'should initialise the status' do
+      @status_item.status.should == @options[:status]
+    end
+
+    it 'should initialise an empty message' do
+      @status_item.message.should == ''
+    end
+
+    it 'should initialise the created on from the last updated' do
+      @status_item.created_on.to_s.should == @options[:last_updated]
+    end
+  end
+
   describe "#last_message" do
     before do
       @options = {
