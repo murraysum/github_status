@@ -13,6 +13,13 @@ module GithubStatus
       @created_on = DateTime.parse(options[:created_on])
     end
 
+    def self.current
+      response = GithubStatus::API.current_status
+      response[:created_on] = response[:last_updated]
+      response[:body] = ''
+      new(response)
+    end
+
     def self.last_message 
       new(GithubStatus::API.last_message)
     end
