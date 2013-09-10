@@ -40,6 +40,40 @@ describe GithubStatus::API do
     end
   end
 
+  describe "#current_status" do
+    before do
+      @expected_response = {
+        status: "good",
+        last_updated: Time.now.to_s
+      }
+
+      @stub_request = stub_request(:get, "https://status.github.com/api/status.json")
+      @stub_request.to_return(body: JSON.generate(@expected_response))
+
+      @actual_response = GithubStatus::API.current_status
+    end
+
+    describe "request" do
+      it "should have been requested" do
+        @stub_request.should have_been_requested
+      end
+
+      it "should have requested status.json" do
+        @stub_request.should have_requested(:get, "https://status.github.com/api/status.json")
+      end
+    end
+
+    describe "response" do
+      it "should have responded with a status" do
+        @actual_response[:status].should == @expected_response[:status]
+      end
+
+      it "should have responded with a last updated date" do
+        @actual_response[:last_updated].should == @expected_response[:last_updated]
+      end
+    end
+  end
+
   describe "#last_message" do
     before do
       @expected_response = {
